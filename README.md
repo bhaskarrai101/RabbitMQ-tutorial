@@ -20,8 +20,12 @@
 7. Enabling the server, $  sudo systemctl is-enabled rabbitmq-server.service
 8. Enabling plugins, $ sudo rabbitmq-plugins enable rabbitmq_management
 9. $ sudo netstat -tunelp | grep 15672
-10.$ sudo apt install net-tools.
-11.$ pip install pika
+10.$ sudo apt install net-tools
+11.$ pip install pika 
+
+
+
+
 
 
 
