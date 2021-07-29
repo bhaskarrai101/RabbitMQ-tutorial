@@ -1,6 +1,22 @@
 # RabbitMQ-tutorial
--  AMQP :- Advance Message Queuing Protocol
--          It is a messaging protocol that enables conforming client applictions to communicate with conforming messaging middleware brokers.
+
+## INTRODUCTION
+
+### AMQP :- Advance Message Queuing Protocol
+- AMQP is created as an open standard protocol that allow messaging interoperability  between systems, regardless of meaaage broker vendor or platfrom.
+- - AMQP is an application layer protocol that lets client application talk to the server and intract.
+- This protocol is used for over the wire communication; AMQP is define both the network layer protocol and high level architecture for message brokers.
+- It mainly focuses on process to process communication across IP networks.
+- - AMQP is an encoding schema and a set of procedures allow for two different servers to communicate regardless of the technology used.
+- Goal of AMQP is to enable nessage passing through broker services over TCP/IP connection.
+- AMQP is considered a compact protocol, since it is a BINARY PROTOCOL, meaning that everything sent over AMQP is binary data.
+- A Binary protocol avoids sending useless data over the wire.
+- 
+### AMQ MODEL
+- In this model one client called the PRODUCER which sends a message to an EXCHANGE.
+- Exchange then distribute  message copies to QUEUES, depending on rules defined by the exchange type and routing key provided in the message.
+- The message is finally consumed by a subscriber/consumer.
+- 
 # RabbitMQ
 - RabbitMQ is an open source message-broker software that originally implemented the Advance Message Queuing Protocol and has since been extended with plug-in architecture to support Streaming Text Oriented Messaging Protocol,Message Queuing Telemetry Transport and other protocols.
 ## Terminology
