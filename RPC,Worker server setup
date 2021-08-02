@@ -1,0 +1,84 @@
+## Worker code
+
+import time
+import pika
+
+
+
+credentials = pika.PlainCredentials('admin', 'admin')
+
+connection = pika.BlockingConnection(pika.ConnectionParameters('127.0.0.1',5672,'/',credentials))
+channel = connection.channel()
+
+channel.queue_declare(queue='task_queue', durable=True)
+print(' [*] Waiting for message. To exit press CTRL+C')
+
+
+def callback(ch, method, properties, body):
+    print(" [x] Received %r" % body.decode())
+    time.sleep(body.count(b'.'))
+    print(" [x] Done")
+    #ch.basic_ack(delivery_tag=method.delivery_tag)
+    
+
+#channel.basic_qos(prefetch_count=1)
+channel.basic_consume(on_message_callback=callback, queue='task_queue', auto_ack=True)
+
+
+#print('[*] Waiting for message')
+
+channel.start_consuming()
+
+
+## new_task
+
+import sys
+import pika
+
+# define connection and host or ip address
+credentials = pika.PlainCredentials('admin','12qw34er')
+
+
+connection = pika.BlockingConnection(pika.ConnectionParameters('127.0.0.1',5672,'/',credentials))
+
+channel = connection.channel()
+
+channel.queue_declare(queue='task_queue', durable=True)
+
+message = ''.join(sys.argv[1:]) or "Hello World!"
+
+
+
+channel.basic_publish(exchange='',
+                      routing_key='task_queue',
+                      body=message,)
+                      #properties=pika.BasicProperties(delivery_mode=2,))
+
+print(" [x] Sent %r" % message )
+
+connection.close()
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
